@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from 'express'
 
 class Server {
@@ -8,10 +9,11 @@ class Server {
   }
 
   init () {
+    const port = process.env.PORT
     this.server = express()
 
     this.server
-      .listen(3333, () => console.log('working on port 3333'))
+      .listen(port, () => console.log(`working on port ${port}`))
   }
 }
 
