@@ -9,7 +9,9 @@ export class SendEmailController implements Controller {
   }
 
   async handle (request: SendEmailController.Request): Promise<HttpResponse> {
-    return ok(request)
+    const { email } = request
+
+    return ok({ email })
   }
 }
 
