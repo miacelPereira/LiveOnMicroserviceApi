@@ -1,18 +1,16 @@
 import 'dotenv/config'
-import express from 'express'
 
 class Server {
-  server: express
-
   constructor () {
     this.init()
   }
 
-  init () {
+  async init () {
     const port = process.env.PORT
-    this.server = express()
+    const { setupApp } = await import('./config/app')
 
-    this.server
+    const server = await setupApp()
+    server
       .listen(port, () => console.log(`working on port ${port}`))
   }
 }
