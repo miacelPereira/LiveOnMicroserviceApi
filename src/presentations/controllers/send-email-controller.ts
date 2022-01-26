@@ -1,4 +1,4 @@
-import { ok } from '../helpers/http-helper'
+import { badRequest, ok } from '../helpers/http-helper'
 import { Controller, HttpResponse, Validation } from '../protocols'
 
 export class SendEmailController implements Controller {
@@ -9,6 +9,12 @@ export class SendEmailController implements Controller {
   }
 
   async handle (request: SendEmailController.Request): Promise<HttpResponse> {
+    const error = this.validation.validate(request)
+
+    if (error) {
+      return badRequest(error)
+    }
+
     const { email } = request
 
     return ok({ email })
