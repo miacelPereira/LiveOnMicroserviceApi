@@ -1,5 +1,5 @@
 import { Authentication } from '../../domain/usecases'
-import { ok, serverError } from '../helpers/http-helper'
+import { ok, unauthorized } from '../helpers/http-helper'
 import { Controller } from '../protocols'
 
 export class GetAccessTokenController implements Controller {
@@ -13,7 +13,7 @@ export class GetAccessTokenController implements Controller {
     const authenticationModel = await this.authentication.auth(request)
 
     if (!authenticationModel) {
-      return serverError(new Error())
+      return unauthorized()
     }
 
     return ok(authenticationModel)
