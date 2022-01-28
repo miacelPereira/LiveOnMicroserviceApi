@@ -5,6 +5,7 @@ import { Request, Response } from 'express'
 export const adaptRoute = (controller: Controller) => {
   return async (req: Request, res: Response) => {
     const request = {
+      ...(req.headers || {}),
       ...(req.body || {}),
       ...(req.params || {}),
       ...(req.file || {}),

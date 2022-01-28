@@ -16,8 +16,6 @@ export class GetAccessTokenController implements Controller {
       return serverError(new Error())
     }
 
-    console.log(authenticationModel)
-
     return ok(authenticationModel)
   }
 }
